@@ -3,14 +3,14 @@ require "yaml"
 require "ostruct"
 
 module Viewcoat
-  class Store
+  class Store < BasicObject
     def initialize
-      @current = OpenStruct.new
+      @current = ::OpenStruct.new
     end
 
     def with(hash = {}, &block)
       @prev = @current
-      @current = OpenStruct.new(@current.to_h.merge(hash))
+      @current = ::OpenStruct.new(@current.to_h.merge(hash))
       block.call if block
       @current = @prev
       nil
@@ -26,7 +26,7 @@ module Viewcoat
     end
 
     def defaults(hash = {})
-      @current = OpenStruct.new(hash.merge(@current.to_h))
+      @current = ::OpenStruct.new(hash.merge(@current.to_h))
     end
 
     def cache_key
