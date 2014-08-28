@@ -8,8 +8,8 @@ Gem::Specification.new do |spec|
   spec.version       = Viewcoat::VERSION
   spec.authors       = ["Shu Uesugi"]
   spec.email         = ["shu@chibicode.com"]
-  spec.summary       = %q{Another way to pass options to partials in Rails view.}
-  spec.description   = %q{Another way to pass options to partials in Rails view.}
+  spec.summary       = %q{An alternative way to pass options to partials in Rails view.}
+  spec.description   = %q{An alternative way to pass options to partials in Rails view.}
   spec.homepage      = "https://github.com/chibicode/viewcoat"
   spec.license       = "MIT"
 
