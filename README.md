@@ -13,7 +13,7 @@ Let's say I'd like to render a partial that contains a Bootstrap [button group](
 
 #### `show.erb`:
 
-```erb
+```html+erb
 <%= render "buttons",
   button_class: "btn-primary",
   button_group_class: "btn-group-lg",
@@ -22,7 +22,7 @@ Let's say I'd like to render a partial that contains a Bootstrap [button group](
 
 #### `_buttons.erb`:
 
-```erb
+```html+erb
 <% button_class ||= "btn-default" %>
 <% button_group_class ||= "" %>
 <% local_assigns.fetch :show_second_button, true %>
@@ -45,7 +45,7 @@ Viewcoat uses `coat.with`, `coat.defaults`, and `method_missing` to simplify the
 
 #### `show.erb`:
 
-```erb
+```html+erb
 <%= coat.with(button_class: "btn-primary",
   button_group_class: "btn-group-lg",
   show_second_button: false) do %>
@@ -57,7 +57,7 @@ Viewcoat uses `coat.with`, `coat.defaults`, and `method_missing` to simplify the
 
 #### `_buttons.erb`:
 
-```erb
+```html+erb
 <% coat.defaults(button_class: "btn-default",
   button_group_class: "",
   show_second_button: false) %>
@@ -116,7 +116,7 @@ That's it. Nothing radical. I use this when [presenters](https://www.ruby-toolbo
 
 You can nest `with`, and all of the variables from outer blocks will be available in the child block.
 
-```erb
+```html+erb
 <!-- a.erb -->
 <%= coat.with(a: 1) do %>
   <%= render "b" %>
@@ -133,6 +133,13 @@ You can nest `with`, and all of the variables from outer blocks will be availabl
 ```
 
 **NOTE:** If we were to use a cache block in `_c.erb` above, it'll compute the cache key using values of *both* a and b.
+
+### Tested Ruby Versions
+
+It's failing on 1.9.3 because `OpenStruct` doesn't have `#to_h` method, and I'm too lazy to fix this.
+
+- 2.0.0
+- 2.1.2
 
 ## Contributing
 
