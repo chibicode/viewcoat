@@ -5,11 +5,11 @@
 [![Code Climate](https://codeclimate.com/github/chibicode/viewcoat/badges/gpa.svg)](https://codeclimate.com/github/chibicode/viewcoat)
 [![Coverage Status](https://img.shields.io/coveralls/chibicode/viewcoat.svg)](https://coveralls.io/r/chibicode/viewcoat)
 
-**Viewcoat** lets you pass *optional* parameters to Rails partials ... in a weird way. [@chibicode](http://github.com/chibicode) believes that this makes view code simpler. Viewcoat also plays with [fragment caching](http://guides.rubyonrails.org/caching_with_rails.html#fragment-caching) nicely.
+**Viewcoat** lets you pass *option* parameters to Rails partials ... in a weird way. It might or might not make your view code simpler. Viewcoat also tries to play with [fragment caching](http://guides.rubyonrails.org/caching_with_rails.html#fragment-caching) nicely.
 
-### Before Viewcoat:
+### Before Viewcoat :poop:
 
-Let's say I'd like to render a partial that contains a Bootstrap [button group](http://getbootstrap.com/components/#btn-groups). Its classes can be customized via `button_class` and `button_group_class` parameters, and the second button can be hidden by setting `show_second_button` to false.
+Let's say I'd like to render a partial that contains a [Bootstrap button group](http://getbootstrap.com/components/#btn-groups). Its classes can be customized via `button_class` and `button_group_class` parameters, and the second button can be hidden by setting `show_second_button` to false.
 
 #### `show.erb`:
 
@@ -39,7 +39,7 @@ Let's say I'd like to render a partial that contains a Bootstrap [button group](
 
 Notice that setting defaults can be tricky for boolean values (`||=` trick [doesn't work](http://stackoverflow.com/questions/2060561/optional-local-variables-in-rails-partial-templates-how-do-i-get-out-of-the-de#comment2015511_2060815).) Also, you'd have to list all the parameters on `cache`.
 
-### After Viewcoat:
+### After Viewcoat :sparkling_heart:
 
 Viewcoat uses `coat.with`, `coat.defaults`, and `method_missing` to simplify the above code.
 
@@ -72,7 +72,7 @@ Viewcoat uses `coat.with`, `coat.defaults`, and `method_missing` to simplify the
 <% end %>
 ```
 
-That's it. Nothing radical. I use this when [presenters](https://www.ruby-toolbox.com/categories/rails_presenters) become overkill.
+That's it. Notice that caching is now trivial. I use this when [presenters](https://www.ruby-toolbox.com/categories/rails_presenters) become overkill.
 
 ## Installation
 
@@ -80,13 +80,7 @@ That's it. Nothing radical. I use this when [presenters](https://www.ruby-toolbo
 
 ## Usage
 
-### Rails View Helpers
-
-- `coat`
-
-  Returns a `Viewcoat::Store` instance, which does all the magic.
-
-### `Viewcoat::Store` methods
+### API methods, available in Rails Views
 
 - `coat.with(hash) { block }`
 
@@ -94,15 +88,15 @@ That's it. Nothing radical. I use this when [presenters](https://www.ruby-toolbo
 
 - `coat.defaults(hash)`
 
-  Sets the default value from `hash`.
+  Sets the default value from `hash`. If the key was not set with `with`, it uses these default values.
 
 - `coat.cache_key`
 
-  Returns a unique cache key representing the current store.
+  Returns a unique cache key representing the current key-value pairs.
 
 - `coat.<key_name>`
 
-  Retrieves a value using `key_name`.
+  Retrieves a value that corresponds to `key_name`.
 
 - `coat.<key_name> = <value>`
 
@@ -110,11 +104,11 @@ That's it. Nothing radical. I use this when [presenters](https://www.ruby-toolbo
 
 - `coat.<method_name>`
 
-  If the key doesn't exist, then the method will be delegated to the internal hash that stores data. So you can call `Hash` methods, e.g. `coat.include?(:key)`
+  If the key doesn't exist, then the method will be delegated to the internal hash that stores data. So you can call `Hash` methods, e.g. `coat.include?(:some_key)` or `coat.keys`
 
 ### Notes on Nesting
 
-You can nest `with`, and all of the variables from outer blocks will be available in the child block.
+You can nest `with` across partials. All of the variables from outer blocks will be available in the child block.
 
 ```html+erb
 <!-- a.erb -->
@@ -136,7 +130,7 @@ You can nest `with`, and all of the variables from outer blocks will be availabl
 
 ### Tested Ruby Versions
 
-It's failing on 1.9.3 because `OpenStruct` doesn't have `#to_h` method, and I'm too lazy to fix this.
+Viewcode is unsupported on 1.9.3 because `OpenStruct` doesn't have `#to_h` method, and I'm too lazy to fix this.
 
 - 2.0.0
 - 2.1.2
