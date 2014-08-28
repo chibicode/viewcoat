@@ -1,6 +1,9 @@
 # Viewcoat, for Rails Views
 
 [![Gem Version](https://badge.fury.io/rb/viewcoat.svg)](http://badge.fury.io/rb/viewcoat)
+[![Build Status](https://travis-ci.org/chibicode/viewcoat.svg)](https://travis-ci.org/chibicode/viewcoat)
+[![Code Climate](https://codeclimate.com/github/chibicode/viewcoat/badges/gpa.svg)](https://codeclimate.com/github/chibicode/viewcoat)
+[![Coverage Status](https://img.shields.io/coveralls/chibicode/viewcoat.svg)](https://coveralls.io/r/chibicode/viewcoat)
 
 **Viewcoat** lets you pass *optional* parameters to Rails partials ... in a weird way. [@chibicode](http://github.com/chibicode) believes that this makes view code simpler. Viewcoat also plays with [fragment caching](http://guides.rubyonrails.org/caching_with_rails.html#fragment-caching) nicely.
 
