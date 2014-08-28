@@ -2,7 +2,7 @@
 
 [![Gem Version](https://badge.fury.io/rb/viewcoat.svg)](http://badge.fury.io/rb/viewcoat)
 
-**Viewcoat** lets you pass *optional* parameters to Rails partials ... in a weird way. [@chibicode](http://github.com/chibicode) believes that this makes view code simpler.
+**Viewcoat** lets you pass *optional* parameters to Rails partials ... in a weird way. [@chibicode](http://github.com/chibicode) believes that this makes view code simpler. Viewcoat also plays with [fragment caching](http://guides.rubyonrails.org/caching_with_rails.html#fragment-caching) nicely.
 
 ### Before Viewcoat:
 
