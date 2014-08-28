@@ -1,6 +1,8 @@
 # Viewcoat, for Rails Views
 
-**Viewcoat** lets you pass *optional* parameters to Rails partials ... in a weird way. @chibicode believes that this makes view code simpler.
+[![Gem Version](https://badge.fury.io/rb/viewcoat.svg)](http://badge.fury.io/rb/viewcoat)
+
+**Viewcoat** lets you pass *optional* parameters to Rails partials ... in a weird way. [@chibicode](http://github.com/chibicode) believes that this makes view code simpler.
 
 ### Before Viewcoat:
 
@@ -17,7 +19,7 @@ Let's say I'd like to render a partial that contains a Bootstrap [button group](
 
 #### `_buttons.erb`:
 
-```
+```erb
 <% button_class ||= "btn-default" %>
 <% button_group_class ||= "" %>
 <% local_assigns.fetch :show_second_button, true %>
@@ -38,7 +40,7 @@ Notice that setting defaults can be tricky for boolean values (`||=` trick [does
 
 Viewcoat uses `coat.with`, `coat.defaults`, and `method_missing` to simplify the above code.
 
-#### `show.html`:
+#### `show.erb`:
 
 ```erb
 <%= coat.with(button_class: "btn-primary",
@@ -50,9 +52,9 @@ Viewcoat uses `coat.with`, `coat.defaults`, and `method_missing` to simplify the
 <% end %>
 ```
 
-#### `_buttons.html`:
+#### `_buttons.erb`:
 
-```
+```erb
 <% coat.defaults(button_class: "btn-default",
   button_group_class: "",
   show_second_button: false) %>
@@ -125,7 +127,6 @@ You can nest `with`, and all of the variables from outer blocks will be availabl
 <!-- _c.erb -->
 <%= coat.a %>
 <%= coat.b %>
-<!--  -->
 ```
 
 **NOTE:** If we were to use a cache block in `_c.erb` above, it'll compute the cache key using values of *both* a and b.
@@ -137,3 +138,13 @@ You can nest `with`, and all of the variables from outer blocks will be availabl
 3. Commit your changes (`git commit -am 'Add some feature'`)
 4. Push to the branch (`git push origin my-new-feature`)
 5. Create a new Pull Request
+
+## Author
+
+Shu Uesugi ([Twitter](http://twitter.com/chibicode)/[GitHub](http://github.com/chibicode)/[G+](https://plus.google.com/110325199858284431541?rel=author)).
+
+![Shu Uesugi](http://www.gravatar.com/avatar/b868d84bbe2ed30ec45c9253e1c1cefe.jpg?s=200)
+
+### License
+
+[MIT License](http://chibicode.mit-license.org/)
