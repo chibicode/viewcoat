@@ -60,7 +60,7 @@ Viewcoat uses `coat.with`, `coat.defaults`, and `method_missing` to simplify the
 ```html+erb
 <% coat.defaults(button_class: "btn-default",
   button_group_class: "",
-  show_second_button: false) %>
+  show_second_button: true) %>
 
 <% cache [coat] do %>
   <div class="btn-group <%= coat.button_group_class %>">
